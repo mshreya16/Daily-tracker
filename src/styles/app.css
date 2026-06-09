@@ -43,10 +43,16 @@ color:white;
 }
 
 .stats-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:16px;
-margin-bottom:20px;
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fit,minmax(140px,1fr));
+  gap:16px;
+}
+.glass-card,
+.hero-card,
+.stat-card{
+  width:100%;
+  box-sizing:border-box;
 }
 
 .stat-card{
@@ -64,10 +70,11 @@ transform:translateY(-3px);
 }
 
 .page {
+  width: 100%;
   max-width: 1200px;
-  margin: auto;
-  padding: 24px;
-  padding-bottom: 100px;
+  margin: 0 auto;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
 .glass-card{
@@ -225,4 +232,29 @@ background:#e5e5ea;
 
 .heatmap-cell.active{
 background:#34c759;
+}
+
+@media (max-width:768px){
+
+  .hero-top{
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .stats-grid{
+    grid-template-columns:1fr;
+  }
+
+  .heatmap-grid{
+    grid-template-columns:
+      repeat(5,1fr);
+  }
+
+  h1{
+    font-size:24px;
+  }
+
+  .theme-btn{
+    align-self:flex-end;
+  }
 }

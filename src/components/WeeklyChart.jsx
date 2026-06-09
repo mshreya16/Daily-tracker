@@ -23,7 +23,7 @@ export default function WeeklyChart() {
       <h2>Weekly Progress</h2>
 
       <div style={{ height: 250 }}>
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height={250}>
           <LineChart data={data}>
             <XAxis dataKey="day" />
             <YAxis />
