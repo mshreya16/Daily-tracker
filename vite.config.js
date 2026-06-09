@@ -8,7 +8,7 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       manifest: {
-        name: "Shreya Daily Tracker",
+        name: "Daily Tracker",
         short_name: "Tracker",
         theme_color: "#0071e3",
         background_color: "#ffffff",

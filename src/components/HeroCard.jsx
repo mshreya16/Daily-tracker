@@ -14,7 +14,7 @@ export default function HeroCard({ progress }) {
         <div>
           <p className="subtitle">{new Date().toDateString()}</p>
 
-          <h1>{greeting} Shreya 👋</h1>
+          <h1>{greeting} 👋</h1>
 
           <p className="quote">{quote}</p>
         </div>
