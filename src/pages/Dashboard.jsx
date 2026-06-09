@@ -15,8 +15,6 @@ import { getCurrentStreak, getBestStreak } from "../utils/streakUtils";
 
 import { calculateDailyScore } from "../utils/dailyScore";
 import SummaryCard from "../components/SummaryCard";
-import Login from "../components/Login";
-import UserProfile from "../components/UserProfile";
 
 export default function Dashboard() {
   const [water, setWater] = useState(() => {
@@ -63,8 +61,6 @@ export default function Dashboard() {
   return (
     <div className="page">
       <HeroCard progress={progress} />
-      <Login />
-      <UserProfile />
 
       <div className="stats-grid">
         <StatCard icon="🔥" value={currentStreak} label="Day Streak" />
