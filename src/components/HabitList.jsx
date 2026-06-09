@@ -1,12 +1,20 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function HabitList() {
   const [habits, setHabits] = useState([]);
 
   useEffect(() => {
-    const savedHabits = JSON.parse(localStorage.getItem("habits")) || [];
+    const loadHabits = () => {
+      const saved = JSON.parse(localStorage.getItem("habits")) || [];
 
-    setHabits(savedHabits);
+      setHabits(saved);
+    };
+
+    loadHabits();
+
+    window.addEventListener("storage", loadHabits);
+
+    return () => window.removeEventListener("storage", loadHabits);
   }, []);
 
   return (

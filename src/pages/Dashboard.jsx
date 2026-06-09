@@ -12,7 +12,7 @@ import StreakCard from "../components/StreakCard";
 import Heatmap from "../components/HeatMap";
 import { getHabitProgress } from "../utils/habitUtils";
 import { getCurrentStreak, getBestStreak } from "../utils/streakUtils";
-
+import { markTodayActive } from "../utils/activityTracker";
 import { calculateDailyScore } from "../utils/dailyScore";
 import SummaryCard from "../components/SummaryCard";
 
@@ -52,6 +52,7 @@ export default function Dashboard() {
     });
 
     localStorage.setItem("journalHistory", JSON.stringify(entries));
+    markTodayActive();
 
     setJournal("");
 

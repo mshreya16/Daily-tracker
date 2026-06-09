@@ -248,24 +248,8 @@ border-radius:12px;
 margin:5px;
 font-weight:500;
 }
-.heatmap-grid{
-display:grid;
-grid-template-columns:
-repeat(6, 1fr);
-gap:8px;
-margin-top:15px;
-}
 
-.heatmap-cell{
-width:60%;
-aspect-ratio:1;
-border-radius:4px;
-background:#e5e5ea;
-}
 
-.heatmap-cell.active{
-background:#34c759;
-}
 
 @media (max-width:768px){
 
@@ -279,9 +263,22 @@ background:#34c759;
   }
 
   .heatmap-grid{
-    grid-template-columns:
-      repeat(5,1fr);
-  }
+display:grid;
+grid-template-columns:
+repeat(7,1fr);
+gap:8px;
+margin-top:15px;
+}
+
+.heatmap-cell{
+aspect-ratio:1;
+border-radius:8px;
+background:#e5e5ea;
+}
+
+.heatmap-cell.active{
+background:#34c759;
+}
   .bottom-nav {
     padding: 8px 0;
   }
@@ -297,4 +294,38 @@ background:#34c759;
   .theme-btn{
     align-self:flex-end;
   }
+}
+.calendar-weekdays{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  margin-bottom:10px;
+  text-align:center;
+  font-size:12px;
+  font-weight:600;
+}
+
+.calendar-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:8px;
+}
+
+.calendar-day{
+  aspect-ratio:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  background:#e5e5ea;
+  font-size:14px;
+  font-weight:600;
+}
+
+.calendar-day.active{
+  background:#34c759;
+  color:white;
+}
+
+.calendar-empty{
+  aspect-ratio:1;
 }

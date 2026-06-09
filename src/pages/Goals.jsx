@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { markTodayActive } from "../utils/activityTracker";
 
 export default function Goals() {
   const [goals, setGoals] = useState(() => {
@@ -38,7 +39,7 @@ export default function Goals() {
         progress: 0,
       },
     ]);
-
+    markTodayActive();
     setGoalName("");
   };
 
@@ -57,6 +58,7 @@ export default function Goals() {
     );
 
     setGoals(updatedGoals);
+    markTodayActive();
   };
 
   const decreaseProgress = (index) => {
@@ -68,6 +70,7 @@ export default function Goals() {
     );
 
     setGoals(updatedGoals);
+    markTodayActive();
   };
 
   return (

@@ -1,42 +1,67 @@
+import { getActivityDates } from "../utils/activityTracker";
+
 export default function Heatmap() {
-  const journalEntries =
-    JSON.parse(localStorage.getItem("journalHistory")) || [];
+  const activityDates = getActivityDates();
 
-  const entryDates = journalEntries.map((entry) => entry.date);
+  const today = new Date();
 
-  const days = [];
+  const year = today.getFullYear();
 
-  for (let i = 1; i <= 30; i++) {
-    const date = new Date();
+  const month = today.getMonth();
 
-    date.setDate(i);
+  const monthName = today.toLocaleString("default", { month: "long" });
 
-    const formattedDate = date.toLocaleDateString();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-    const active = entryDates.includes(formattedDate);
+  const firstDay = new Date(year, month, 1).getDay();
 
-    days.push(
+  const cells = [];
+
+  for (let i = 0; i < firstDay; i++) {
+    cells.push(<div key={`empty-${i}`} className="calendar-empty" />);
+  }
+
+  for (let day = 1; day <= daysInMonth; day++) {
+    const date = `${year}-${String(month + 1).padStart(2, "0")}-${String(
+      day,
+    ).padStart(2, "0")}`;
+
+    const active = activityDates.includes(date);
+
+    cells.push(
       <div
-        key={i}
-        className={active ? "heatmap-cell active" : "heatmap-cell"}
-      />,
+        key={day}
+        className={active ? "calendar-day active" : "calendar-day"}
+      >
+        {day}
+      </div>,
     );
   }
 
   return (
     <div className="glass-card">
-      <h2>📅 Monthly Activity</h2>
+      <h2>
+        📅 {monthName} {year}
+      </h2>
 
-      <div className="heatmap-grid">{days}</div>
+      <div className="calendar-weekdays">
+        <span>Sun</span>
+        <span>Mon</span>
+        <span>Tue</span>
+        <span>Wed</span>
+        <span>Thu</span>
+        <span>Fri</span>
+        <span>Sat</span>
+      </div>
+
+      <div className="calendar-grid">{cells}</div>
 
       <p
         style={{
-          marginTop: "15px",
-          fontSize: "14px",
-          color: "#666",
+          marginTop: 15,
         }}
       >
-        Green squares indicate days with journal activity.
+        🟩 Active Day &nbsp;&nbsp; ⬜ No Activity
       </p>
     </div>
   );

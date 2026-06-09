@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { markTodayActive } from "../utils/activityTracker";
 
 export default function Habits() {
   const [habits, setHabits] = useState(() => {
@@ -44,6 +45,7 @@ export default function Habits() {
     ]);
 
     setNewHabit("");
+    markTodayActive();
   };
 
   const deleteHabit = (index) => {
@@ -58,6 +60,7 @@ export default function Habits() {
     updated[index].completed = !updated[index].completed;
 
     setHabits(updated);
+    markTodayActive();
   };
 
   return (
