@@ -15,6 +15,8 @@ import { getCurrentStreak, getBestStreak } from "../utils/streakUtils";
 import { markTodayActive } from "../utils/activityTracker";
 import { calculateDailyScore } from "../utils/dailyScore";
 import SummaryCard from "../components/SummaryCard";
+import { saveDailyHistory } from "../utils/historyTracker";
+import { updateTodayHistory } from "../utils/updateTodayHistory";
 
 export default function Dashboard() {
   const [water, setWater] = useState(() => {
@@ -39,7 +41,7 @@ export default function Dashboard() {
 
   const currentStreak = getCurrentStreak();
 
-  const bestStreak = getBestStreak(currentStreak);
+  const bestStreak = getBestStreak();
 
   const saveJournal = () => {
     if (!journal.trim()) return;
@@ -52,6 +54,16 @@ export default function Dashboard() {
     });
 
     localStorage.setItem("journalHistory", JSON.stringify(entries));
+    saveDailyHistory({
+      mood,
+
+      water,
+
+      habits: JSON.parse(localStorage.getItem("habits")) || [],
+
+      journal,
+    });
+    updateTodayHistory();
     markTodayActive();
 
     setJournal("");

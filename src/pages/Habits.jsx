@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 import { markTodayActive } from "../utils/activityTracker";
+import {
+  updateTodayHistory
+}
+from "../utils/updateTodayHistory";
 
 export default function Habits() {
   const [habits, setHabits] = useState(() => {
@@ -45,6 +49,7 @@ export default function Habits() {
     ]);
 
     setNewHabit("");
+    updateTodayHistory();
     markTodayActive();
   };
 
@@ -52,6 +57,7 @@ export default function Habits() {
     const updated = habits.filter((_, i) => i !== index);
 
     setHabits(updated);
+    updateTodayHistory();
   };
 
   const toggleHabit = (index) => {
@@ -60,6 +66,7 @@ export default function Habits() {
     updated[index].completed = !updated[index].completed;
 
     setHabits(updated);
+    updateTodayHistory();
     markTodayActive();
   };
 

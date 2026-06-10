@@ -1,4 +1,5 @@
 import { markTodayActive } from "../utils/activityTracker";
+import { updateTodayHistory } from "../utils/updateTodayHistory";
 export default function WaterTracker({ water, setWater }) {
   return (
     <div className="stat-card">
@@ -12,6 +13,7 @@ export default function WaterTracker({ water, setWater }) {
         <button
           onClick={() => {
             setWater(water + 1);
+            updateTodayHistory();
 
             markTodayActive();
           }}
